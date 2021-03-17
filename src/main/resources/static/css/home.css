@@ -4,3 +4,49 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.4rem;
 }
+
+h1 {
+  text-align: center;
+  margin: 20px 0 0 0;
+}
+
+.create-todo {
+  margin: 20px 0 0 0;
+  display: flex;
+  justify-content: center;
+}
+
+.create-todo input {
+  font-size: 1em;
+  line-height: 1.2;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 0.5em 0.5em;
+  width: 300px;
+}
+
+.create-todo button {
+  font-size: 1em;
+  line-height: 1.2;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  background-color: #008CBA;
+  cursor: pointer;
+  color: white;
+  display: inline-flex;
+  justify-content: center; /* コンテンツを水平方向に中央揃え */
+  align-items: center; /* コンテンツを垂直方向に中央揃え */
+  padding: 0.5em 1.2em;
+}
+
+.todo-error-message {
+  color: red;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.incomplete {
+  text-align: center;
+}

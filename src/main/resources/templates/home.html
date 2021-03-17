@@ -7,10 +7,26 @@
 </head>
 <body>
 
+  <!-- 追加 -->
+  <div class="create-todo">
+    <!-- th:objectでControllerから送られてきたTodoオブジェクトを受け取っている -->
+    <form method="POST" th:action="@{/}" th:object="${todo}">
+      <!-- 入力値にエラーがあった時のみ表示 -->
+      <p th:errors="*{content}" class="todo-error-message"></p>
+
+       <!-- th:fieldでHTMLのid,name属性を作ってくれる -->
+      <input type="text" th:field="*{content}">
+      <button type="submit">登録</button>
+    </form>
+  </div>
+  <!-- ここまで -->
+
   <!-- DBのデータを全件表示 -->
-  <div th:each="todo : ${allTodo}">
+  <h1>やること</h1>
+  <div class="incomplete" th:each="todo : ${allTodo}">
     <p th:text="${todo.content}"></p>
   </div>
+
 </body>
 
 </html>

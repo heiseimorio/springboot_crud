@@ -18,4 +18,9 @@ public class TodoService {
   public List<Todo> searchAll() {
     return todoRepository.findAll();
   }
+
+  // 追加(Todoを新たにDBに登録する)
+  public void addTodo(Todo todo) {
+    todoRepository.save(todo);
+  }
 }
