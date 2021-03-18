@@ -1,6 +1,7 @@
 package com.example.todolist.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.todolist.Model.Todo;
 import com.example.todolist.Repository.TodoRepository;
@@ -19,8 +20,14 @@ public class TodoService {
     return todoRepository.findAll();
   }
 
-  // 追加(Todoを新たにDBに登録する)
+  // Todoを新たにDBに登録する
   public void addTodo(Todo todo) {
     todoRepository.save(todo);
+  }
+
+  // idに応じたTodoを返却する
+  public Todo findById(Integer id) {
+    Optional<Todo> updateTodo = todoRepository.findById(id);
+    return updateTodo.get();
   }
 }

@@ -7,7 +7,6 @@
 </head>
 <body>
 
-  <!-- 追加 -->
   <div class="create-todo">
     <!-- th:objectでControllerから送られてきたTodoオブジェクトを受け取っている -->
     <form method="POST" th:action="@{/}" th:object="${todo}">
@@ -19,13 +18,33 @@
       <button type="submit">登録</button>
     </form>
   </div>
-  <!-- ここまで -->
 
   <!-- DBのデータを全件表示 -->
-  <h1>やること</h1>
-  <div class="incomplete" th:each="todo : ${allTodo}">
-    <p th:text="${todo.content}"></p>
-  </div>
+  <div class="flex">      
+    <div class="incomplete">
+      <h1>未完了</h1>
+      <div th:each="todo : ${allTodo}">
+        <!-- doneのフラグがfalseのものを表示 -->
+        <div th:if="${!todo.done}">
+          <!-- Controllerの @PostMapping(/done) と結びつける -->
+          <form method="POST" th:action="@{/done}">
+            <input type="hidden" name="id" th:value="${todo.id}" />
+            <button type="submit"></button>
+          </form>
+          <p th:text="${todo.content}"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="complete">
+      <h1>完了済み</h1>
+      <!-- doneのフラグがtrueのものを表示 -->
+      <div th:each="todo : ${allTodo}" th:if="${todo.done}">
+        <p th:text="${todo.content}"></p>
+      </div>
+    </div>
+
+  </div>  
 
 </body>
 

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -29,7 +30,7 @@ public class TodoController {
     return "home";
   }
 
-  // 追加(formのth:actionと結びついている)
+  // 新規登録用
   @PostMapping("/")
   public String createTodo(@Valid Todo todo, BindingResult bindingResult,Model model) {
     // 入力値にエラーがあった時
@@ -43,5 +44,15 @@ public class TodoController {
     // エラーがなかった時は、Todoを新規登録する
     todoService.addTodo(todo);
     return "redirect:/";
-  }  
+  }
+
+  // 未完了タスク横のボタンが押されたら、doneフラグをtrueに変更する
+  @PostMapping("/done")
+  public String doneTodo(@RequestParam(name = "id") Integer todoId) {
+    Todo updateTodo = todoService.findById(todoId);
+    updateTodo.setDone(true);
+    todoService.addTodo(updateTodo);
+    return "redirect:/";
+  }
+
 }
