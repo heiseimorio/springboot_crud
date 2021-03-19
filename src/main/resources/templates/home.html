@@ -7,16 +7,24 @@
 </head>
 <body>
 
-  <div class="create-todo">
-    <!-- th:objectでControllerから送られてきたTodoオブジェクトを受け取っている -->
-    <form method="POST" th:action="@{/}" th:object="${todo}">
-      <!-- 入力値にエラーがあった時のみ表示 -->
-      <p th:errors="*{content}" class="todo-error-message"></p>
+  <div class="form-area">
+    <div class="create-todo">
+      <!-- th:objectでControllerから送られてきたTodoオブジェクトを受け取っている -->
+      <form method="POST" th:action="@{/}" th:object="${todo}">
+        <!-- 入力値にエラーがあった時のみ表示 -->
+        <p th:errors="*{content}" class="todo-error-message"></p>
+  
+         <!-- th:fieldでHTMLのid,name属性を作ってくれる -->
+        <input type="text" th:field="*{content}">
+        <button type="submit">登録</button>
+      </form>
+    </div>
 
-       <!-- th:fieldでHTMLのid,name属性を作ってくれる -->
-      <input type="text" th:field="*{content}">
-      <button type="submit">登録</button>
-    </form>
+    <div class="delete-all">
+      <form method="POST" th:action="@{/deleteAll}">
+        <button type="submit">完了済みを削除</button>
+      </form>
+    </div>
   </div>
 
   <!-- DBのデータを全件表示 -->

@@ -14,10 +14,14 @@ p {
   display: inline-block;
 }
 
-.create-todo {
-  margin: 20px 0 0 0;
+.form-area {
+  margin: 20px auto;
   display: flex;
   justify-content: center;
+}
+
+.create-todo {
+  display: inline-block;
 }
 
 .create-todo input {
@@ -49,6 +53,18 @@ p {
   color: red;
   text-align: center;
   font-size: 1.2rem;
+}
+
+.delete-all {
+  margin: 10px 10px 10px 10px;
+}
+
+.delete-all button {
+  color: white;
+  background-color: rgb(237, 76, 81);
+  border-radius: 5px;
+  font-size: 0.8em;
+  cursor: pointer;
 }
 
 /* 未完了、完了済みタスクエリア */

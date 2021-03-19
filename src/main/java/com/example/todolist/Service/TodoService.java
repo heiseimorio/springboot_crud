@@ -1,5 +1,6 @@
 package com.example.todolist.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,5 +30,18 @@ public class TodoService {
   public Todo findById(Integer id) {
     Optional<Todo> updateTodo = todoRepository.findById(id);
     return updateTodo.get();
+  }
+
+  // 完了済みTodoの削除
+  public void deleteAllTodo() {
+    List<Todo> allTodo = todoRepository.findAll();
+    List<Todo> doneList = new ArrayList<>();
+    // doneがtrueかどうかを判定。trueのものをdoneListに追加する。
+    for (Todo todo : allTodo) {
+      if (todo.getDone()) {
+        doneList.add(todo);
+      }
+    }
+    todoRepository.deleteAll(doneList);
   }
 }
