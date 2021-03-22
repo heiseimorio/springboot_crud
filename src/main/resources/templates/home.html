@@ -39,7 +39,12 @@
             <input type="hidden" name="id" th:value="${todo.id}" />
             <button type="submit"></button>
           </form>
-          <p th:text="${todo.content}"></p>
+          
+          <form method="POST" th:action="@{/fixTodo}">
+            <input type="hidden" name="id" th:value="${todo.id}" />
+            <input type="text" name="todo" th:value="${todo.content}"/>
+            <input class="fix-button" type="submit" value="修正" />
+          </form>
         </div>
       </div>
     </div>

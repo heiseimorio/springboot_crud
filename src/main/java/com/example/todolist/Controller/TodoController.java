@@ -55,10 +55,25 @@ public class TodoController {
     return "redirect:/";
   }
 
-  // 削除ボタンが押されたら、処理される
+  // 削除ボタンが押されたら、doneがtrueのTodoを削除
   @PostMapping("/deleteAll")
   public String deleteAll() {
     todoService.deleteAllTodo();
+    return "redirect:/";
+  }
+
+  // 追加(修正ボタンが押されたら、contentを変更して更新処理)
+  @PostMapping("/fixTodo")
+  public String fixTodo(@RequestParam(name = "id") Integer todoId,
+                        @RequestParam(name = "todo") String todoContent) {
+    
+    if(todoContent.isEmpty() || todoContent.isBlank()) {
+      return "redirect:/";
+    }
+    // idに応じたTodoのcontentを更新する
+    Todo fixTodo = todoService.findById(todoId);
+    fixTodo.setContent(todoContent);
+    todoService.addTodo(fixTodo);
     return "redirect:/";
   }
 }
